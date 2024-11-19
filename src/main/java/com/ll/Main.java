@@ -3,10 +3,17 @@ package com.ll;
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println("Hello world!");
+        App app = new App();
+        app.run();
+    }
 
-        for(int i=0; i<5; i++){
-            System.out.println("i = " +i);
-        }
+}
+
+class App{
+
+    public void run() {
+        System.out.println("===명언 앱===");
+
+        System.out.print("명령) ");
     }
 }
