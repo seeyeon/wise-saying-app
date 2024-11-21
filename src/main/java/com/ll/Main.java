@@ -52,11 +52,21 @@ class App{
             }else if(cmd.equals("목록")){
                 System.out.println("번호 / 작가 / 명언");
                 System.out.println("-----------------------");
+
+                //오류 처리) 등록하지 않고 목록을 보는 경우
+                //1. try-catch
                 try{
                     System.out.println(lastWiseSaying.id+"/"+lastWiseSaying.saying+"/"+lastWiseSaying.author);
                 }catch(NullPointerException e){
                     System.out.println("등록을 하고 목록을 출력하세요~");
                 }
+
+//                //2. if문
+//                if(lastWiseSaying !=null){
+//                    System.out.println("%d / %s / %s".formatted(lastWiseSaying.id, lastWiseSaying.saying, lastWiseSaying.author));
+//                }else{
+//                    System.out.println("등록을 하고 목록을 출력하세요~");
+//                }
             }
         }
     }
