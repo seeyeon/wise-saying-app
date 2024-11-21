@@ -62,16 +62,22 @@ class App{
                 System.out.println("번호 / 작가 / 명언");
                 System.out.println("-----------------------");
 
-                //반복문
-                int i=0;
+                //while() 반복문
+//                int i=0;
+//
+//                while(i<wiseSayingsSize){
+//
+//                    WiseSaying wiseSaying = wiseSayings[i];  //배열에 담긴 내용을 꺼내서 저장
+//                    System.out.println(wiseSaying);
+//                    i++;
+//
+//
+//                }
 
-                while(i<wiseSayingsSize){
-
-                    WiseSaying wiseSaying = wiseSayings[i];  //배열에 담긴 내용을 꺼내서 저장
+                //for문
+                for(int i=0; i<wiseSayingsSize; i++){
+                    WiseSaying wiseSaying = wiseSayings[i];
                     System.out.println(wiseSaying);
-                    i++;
-
-
                 }
 
             }
