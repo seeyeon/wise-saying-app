@@ -1,6 +1,5 @@
 package com.ll;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main{
@@ -8,95 +7,78 @@ public class Main{
 
         App app = new App();
         app.run();
-        
+
     }
 }
+
 
 class App{
 
 
     public void run() {
-
-        System.out.println("==명언 앱==");
+        System.out.println("== 명언 앱 ==");
         Scanner sc = new Scanner(System.in);
-        int id =0;
 
-        ArrayList<String> sayings= new ArrayList<>();
-        ArrayList<String> authors= new ArrayList<>();
-        ArrayList<String> deleteList = new ArrayList<>();
-        ArrayList<String> setList = new ArrayList<>();
+        int lastId=0;//명언 번호
+
+        WiseSaying lastWiseSaying = null;
 
         while(true){
 
             System.out.print("명령) ");
             String cmd = sc.nextLine();
 
-
             if(cmd.equals("종료")){
                 break;
             }else if(cmd.equals("등록")){
-
                 System.out.print("명언 : ");
                 String saying = sc.nextLine();
-                sayings.add(saying);
 
                 System.out.print("작가 : ");
                 String author = sc.nextLine();
-                authors.add(author);
 
-                id++;
-                System.out.println(id + " 번 명언이 등록되었습니다.");
+                int id = ++lastId;
 
+                //객체 생성( id, 명언, 작가 3가지 값을 가짐)
+                WiseSaying wiseSaying = new WiseSaying(id,saying,author); //객체 생성 후 생성자 활용
+
+                //제대로 값이 들어가는 지 확인!
+                System.out.println(wiseSaying); //리모컨(주소값)이 출력됨
+
+                lastWiseSaying = wiseSaying; // 값을 저장한 객체에 대한 정보 저장
+
+
+                System.out.println(id+"번 명언이 등록되었습니다.");
             }else if(cmd.equals("목록")){
                 System.out.println("번호 / 작가 / 명언");
-                System.out.println("----------------------");
-
-                int size = sayings.size();
-                for(int i=size-1; i>=0; i--){
-                   System.out.println((id--)+"/"+sayings.get(i)+"/"+authors.get(i));
-               }
-            }else if(cmd.equals("삭제?")){
-
-                System.out.print("id= ");
-                String deleteId = sc.nextLine();
-                //중복 확인
-                if(deleteList.contains(deleteId)){
-                    System.out.println(deleteId + "번 명언은 존재하지 않습니다.");
-                }else{
-                    System.out.println(deleteId + "번 명언이 삭제되었습니다.");
+                System.out.println("-----------------------");
+                try{
+                    System.out.println(lastWiseSaying.id+"/"+lastWiseSaying.saying+"/"+lastWiseSaying.author);
+                }catch(NullPointerException e){
+                    System.out.println("등록을 하고 목록을 출력하세요~");
                 }
-                //중복되지 않는 경우 추가
-                deleteList.add(deleteId);
-
-            }else if(cmd.equals("수정?")){
-                System.out.print("id= ");
-                int setId = sc.nextInt();
-
-                //중복되는 숫자가 있는 경우
-                if(setList.contains(setId)){
-                    System.out.println(setId+ "번 명언은 존재하지 않습니다.");
-                }else{
-
-                    //아닌 경우
-                    setList.add(setId);
-
-                    System.out.println("명언(기존) : "+ sayings.get(setId));
-                    System.out.print("명언 : " );
-                    sayings.set(setId,sc.nextLine());
-
-                    System.out.println("작가(기존) : "+ authors.get(setId));
-                    System.out.print("작가 : " );
-                    authors.set(setId,sc.nextLine());
-                }
-
             }
-
-
-
-
         }
+    }
+}
 
+//기본적으로 Object 클래스를 상속받기 때문에 Object클래스의 toString()메서드를 오버라이드하는 것이다.
+class WiseSaying /*extends Object*/{
+    int id;
+    String saying;
+    String author;
 
+    WiseSaying(int id, String saying, String author){
+        this.id=id;
+        this.saying=saying;
+        this.author=author;
 
     }
+
+    //Object클래스로 부터 물려받은 toString 메서드 오버라이드해서 출력문 예쁘게 출력
+    @Override
+    public String toString(){
+        return "WiseSaying (id=%d, saying=%s, author=%s)".formatted(id,saying,author);
+    }
+
 }
