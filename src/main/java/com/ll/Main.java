@@ -19,9 +19,14 @@ class App{
         System.out.println("== 명언 앱 ==");
         Scanner sc = new Scanner(System.in);
 
-        int lastId=0;//명언 번호
+        int lastId=0;//명언 id
 
-        WiseSaying lastWiseSaying = null;
+        WiseSaying lastWiseSaying = null;  //명언 객체1개 > 마지막 등록한 내용이 목록으로 출력됨
+
+        WiseSaying[] wiseSayings = new WiseSaying[3]; //100개를 담을 주소값(공간)이 할당됨
+
+        int wiseSayingsSize=0; //저장된 명언의 개수
+
 
         while(true){
 
@@ -45,8 +50,9 @@ class App{
                 //제대로 값이 들어가는 지 확인!
                 System.out.println(wiseSaying); //리모컨(주소값)이 출력됨
 
-                lastWiseSaying = wiseSaying; // 값을 저장한 객체에 대한 정보 저장
 
+                wiseSayings[wiseSayingsSize] = wiseSaying; //입력받은 객체의 값을 배열에 저장
+                wiseSayingsSize++;
 
                 System.out.println(id+"번 명언이 등록되었습니다.");
             }else if(cmd.equals("목록")){
