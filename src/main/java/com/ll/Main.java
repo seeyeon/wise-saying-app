@@ -1,5 +1,6 @@
 package com.ll;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main{
@@ -48,11 +49,14 @@ class App{
                 WiseSaying wiseSaying = new WiseSaying(id,saying,author); //객체 생성 후 생성자 활용
 
                 //제대로 값이 들어가는 지 확인!
-                System.out.println(wiseSaying); //리모컨(주소값)이 출력됨
+                //System.out.println(wiseSaying); //리모컨(주소값)이 출력됨
 
 
                 wiseSayings[wiseSayingsSize] = wiseSaying; //입력받은 객체의 값을 배열에 저장
                 wiseSayingsSize++;
+
+                //System.out.println(wiseSayings);  //배열의 주소값이 출려됨
+                System.out.println("Array를 활용해 출력하기"+Arrays.toString(wiseSayings));
 
                 System.out.println(id+"번 명언이 등록되었습니다.");
             }else if(cmd.equals("목록")){
