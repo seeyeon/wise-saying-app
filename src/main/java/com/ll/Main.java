@@ -1,6 +1,5 @@
 package com.ll;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main{
@@ -22,7 +21,7 @@ class App{
 
         int lastId=0;//명언 id
 
-        WiseSaying lastWiseSaying = null;  //명언 객체1개 > 마지막 등록한 내용이 목록으로 출력됨
+        //WiseSaying lastWiseSaying = null;  //명언 객체1개 > 마지막 등록한 내용이 목록으로 출력됨
 
         WiseSaying[] wiseSayings = new WiseSaying[3]; //100개를 담을 주소값(공간)이 할당됨
 
@@ -56,29 +55,29 @@ class App{
                 wiseSayingsSize++;
 
                 //System.out.println(wiseSayings);  //배열의 주소값이 출려됨
-                System.out.println("Array를 활용해 출력하기"+Arrays.toString(wiseSayings));
+                //System.out.println("Array를 활용해 출력하기"+Arrays.toString(wiseSayings));
 
                 System.out.println(id+"번 명언이 등록되었습니다.");
             }else if(cmd.equals("목록")){
                 System.out.println("번호 / 작가 / 명언");
                 System.out.println("-----------------------");
 
-                //오류 처리) 등록하지 않고 목록을 보는 경우
-                //1. try-catch
-                try{
-                    System.out.println(lastWiseSaying.id+"/"+lastWiseSaying.saying+"/"+lastWiseSaying.author);
-                }catch(NullPointerException e){
-                    System.out.println("등록을 하고 목록을 출력하세요~");
+                //반복문
+                int i=0;
+
+                while(i<wiseSayingsSize){
+
+                    WiseSaying wiseSaying = wiseSayings[i];  //배열에 담긴 내용을 꺼내서 저장
+                    System.out.println(wiseSaying);
+                    i++;
+
+
                 }
 
-//                //2. if문
-//                if(lastWiseSaying !=null){
-//                    System.out.println("%d / %s / %s".formatted(lastWiseSaying.id, lastWiseSaying.saying, lastWiseSaying.author));
-//                }else{
-//                    System.out.println("등록을 하고 목록을 출력하세요~");
-//                }
             }
         }
+
+        sc.close();
     }
 }
 
