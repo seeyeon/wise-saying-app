@@ -11,7 +11,6 @@ public class App {
     private int lastId;//명언 id
     //배열에서 리스트로 변경하기
     private final List<WiseSaying> wiseSayings;
-    private int wiseSayingsSize; //저장된 명언의 개수
 
     //생성자에 변수초기화하고함
     App() {
@@ -23,8 +22,8 @@ public class App {
     public void run() {
         System.out.println("== 명언 앱 ==");
 
-        addTest("하루를 꾸준히 하자", "유퀴즈");
-        addTest("나의 죽음을 적에게 알리지 말라", "이순신 장군");
+        //명렁을 입력받기 전 샘픔을 생성한다.
+        makeSampleData();
 
         while (true) {
 
@@ -37,10 +36,37 @@ public class App {
                 actionAdd();
             } else if (cmd.equals("목록")) {
                 actionList();
+            } else if (cmd.equals("삭제?id= ")){
+                actionDelete();
             }
         }
 
         sc.close();
+    }
+
+    private void actionDelete() {
+
+//        //삭제하고자 하는 숫자 입력받기
+//        int deleteNum = sc.nextInt();
+//
+//        WiseSaying wiseSaying;
+//
+//        //if) 삭제할 숫자가 getId()와 일치하면 해당 항목 삭제
+//        if(wiseSayings.getId() == deleteNum){
+//            wiseSayings.remove(deleteNum);
+//        }else{
+//            System.out.println(wiseSayings.getId() + "번 명령은 존재하지 않습니다.");
+//        }
+//        //else) ~번 명령은 존재하지 않습니다." 출력
+
+
+
+    }
+
+    private void makeSampleData() {
+
+        addTest("하루를 꾸준히 하자", "유퀴즈");
+        addTest("나의 죽음을 적에게 알리지 말라", "이순신 장군");
     }
 
     private void actionAdd() {
@@ -76,10 +102,18 @@ public class App {
         System.out.println("번호 / 작가 / 명언");
         System.out.println("-----------------------");
 
-        //for문
-        for (WiseSaying wiseSaying : wiseSayings) {
-            System.out.println("%d %s %s".formatted(wiseSaying.getId(), wiseSaying.getSaying(), wiseSaying.getAuthor()));
+
+
+        for(WiseSaying wiseSaying : wiseSayings.reversed()){
+            System.out.println("%d / %s / %s".formatted(wiseSaying.getId(), wiseSaying.getSaying(), wiseSaying.getAuthor()));
         }
+
+        //for문
+//        for (int i=wiseSayings.size()-1; i>=0; i--) {
+//            WiseSaying wiseSaying = wiseSayings.get(i);
+//            System.out.println("%d %s %s".formatted(wiseSaying.getId(), wiseSaying.getSaying(), wiseSaying.getAuthor()));
+//        }
+
     }
 
 }
