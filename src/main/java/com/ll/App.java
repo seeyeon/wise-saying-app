@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-class App {
+public class App {
 
     //인스턴스 변수(객체의 수명을 증가시킴) 선언
-    private Scanner sc;
+    private final Scanner sc;
     private int lastId;//명언 id
     //배열에서 리스트로 변경하기
-    private List<String> wiseSayings;
+    private final List<String> wiseSayings;
     private int wiseSayingsSize; //저장된 명언의 개수
 
     //생성자에 변수초기화하고함
