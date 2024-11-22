@@ -36,7 +36,7 @@ public class App {
                 actionAdd();
             } else if (cmd.equals("목록")) {
                 actionList();
-            } else if (cmd.equals("삭제?id= ")){
+            } else if (cmd.equals("삭제?id=")){
                 actionDelete();
             }
         }
@@ -44,24 +44,7 @@ public class App {
         sc.close();
     }
 
-    private void actionDelete() {
 
-//        //삭제하고자 하는 숫자 입력받기
-//        int deleteNum = sc.nextInt();
-//
-//        WiseSaying wiseSaying;
-//
-//        //if) 삭제할 숫자가 getId()와 일치하면 해당 항목 삭제
-//        if(wiseSayings.getId() == deleteNum){
-//            wiseSayings.remove(deleteNum);
-//        }else{
-//            System.out.println(wiseSayings.getId() + "번 명령은 존재하지 않습니다.");
-//        }
-//        //else) ~번 명령은 존재하지 않습니다." 출력
-
-
-
-    }
 
     private void makeSampleData() {
 
@@ -113,6 +96,26 @@ public class App {
 //            WiseSaying wiseSaying = wiseSayings.get(i);
 //            System.out.println("%d %s %s".formatted(wiseSaying.getId(), wiseSaying.getSaying(), wiseSaying.getAuthor()));
 //        }
+
+    }
+
+    private void actionDelete() {
+        int deleteId = sc.nextInt();
+        sc.nextLine();
+
+        boolean removed = wiseSayings.removeIf((WiseSaying wiseSaying) -> wiseSaying.getId() == deleteId);
+
+        //wiseSayings.removeIf((WiseSaying wiseSaying) -> wiseSaying.getId() == id);
+        //wiseSayings.removeIf(wiseSaying -> wiseSaying.getId() == id);
+        //wiseSayings.removeIf(w -> w.getId() == id);
+
+        if(removed){
+            System.out.println("%d번 명언을 삭제했습니다.".formatted(deleteId));
+        }else{
+            System.out.println("%d번 명언은 존재하지 않습니다.".formatted(deleteId));
+        }
+
+
 
     }
 
