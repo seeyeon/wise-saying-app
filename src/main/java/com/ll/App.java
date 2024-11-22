@@ -10,15 +10,14 @@ public class App {
     private final Scanner sc;
     private int lastId;//명언 id
     //배열에서 리스트로 변경하기
-    private final List<String> wiseSayings;
+    private final List<WiseSaying> wiseSayings;
     private int wiseSayingsSize; //저장된 명언의 개수
 
     //생성자에 변수초기화하고함
     App() {
         sc = new Scanner(System.in);
         lastId = 0;
-        wiseSayings = new ArrayList<>();
-        wiseSayingsSize = 0;
+        wiseSayings= new ArrayList<>();
     }
 
     public void run() {
@@ -54,7 +53,7 @@ public class App {
 
         WiseSaying wiseSaying = addTest(saying, author);  //중국집1개 넘기기
 
-        System.out.println(wiseSaying.id + "번 명언이 등록되었습니다.");
+        System.out.println(wiseSaying.getId() + "번 명언이 등록되었습니다.");
     }
 
     private WiseSaying addTest(String saying, String author) {
@@ -64,8 +63,7 @@ public class App {
         //객체 생성( id, 명언, 작가 3가지 값을 가짐)
         WiseSaying wiseSaying = new WiseSaying(id, saying, author); //객체 생성 후 생성자 활용
 
-        wiseSayings.add(String.valueOf(wiseSaying));
-        wiseSayingsSize++;
+        wiseSayings.add(wiseSaying);
 
         //return해야 addTest()에서 id를 활용할 수 있게 된다. 왜냐하면 id의 값의 자동 증가는addTest에서 담당하기 때문ㅇ디ㅏ.
         return wiseSaying;  //return 데이터 타입 = 메서드 타입이
@@ -79,8 +77,8 @@ public class App {
         System.out.println("-----------------------");
 
         //for문
-        for (int i = wiseSayingsSize - 1; i >= 0; i++) {
-            System.out.println(wiseSayings.get(i));
+        for (WiseSaying wiseSaying : wiseSayings) {
+            System.out.println("%d %s %s".formatted(wiseSaying.getId(), wiseSaying.getSaying(), wiseSaying.getAuthor()));
         }
     }
 
