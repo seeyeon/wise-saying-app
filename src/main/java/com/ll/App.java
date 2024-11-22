@@ -42,12 +42,53 @@ public class App {
                 int id = Integer.parseInt(idStr);
 
                 actionDelete(id);
+            } else if(cmd.startsWith("수정")){
+                String idStr = cmd.substring(6);
+                int id = Integer.parseInt(idStr);
+
+                actionModify(id);
+
             }
         }
 
         sc.close();
     }
 
+    private void actionModify(int id) {
+        WiseSaying foundWiseSaying = null;
+
+        //1. 수정할 id값을 찾는다.(수정해야하는 값을 처음부터 찾기 시작한다.)
+        for(WiseSaying wiseSaying : wiseSayings){
+            if(wiseSaying.getId() == id){
+                foundWiseSaying = wiseSaying;
+                break; //찾았으니 반복문을 끝낸다
+            }
+        }
+
+        // 만약 수정할 id를 찾지 못한 경우 출력
+
+        if(foundWiseSaying == null){
+            System.out.println("%d번 명언은 존재하지 않습니다.".formatted(id));
+            return;
+        }
+
+        //2. 수정할 부분의 값을 바꾼다.
+
+        System.out.println("명언(기존) : %s".formatted(foundWiseSaying.getSaying()));
+        System.out.print("명언 : ");
+        String saying = sc.nextLine();
+
+        System.out.println("작가(기존) : %s".formatted(foundWiseSaying.getAuthor()));
+        System.out.print("작가 : ");
+        String author = sc.nextLine();
+
+        foundWiseSaying.setSaying(saying);
+        foundWiseSaying.setAuthor(author);
+
+        System.out.println("%d번 명렁이 수정되었습니다.".formatted(foundWiseSaying.getId()));
+
+
+    }
 
 
     private void makeSampleData() {
@@ -89,8 +130,6 @@ public class App {
         System.out.println("번호 / 작가 / 명언");
         System.out.println("-----------------------");
 
-
-
         for(WiseSaying wiseSaying : wiseSayings.reversed()){
             System.out.println("%d / %s / %s".formatted(wiseSaying.getId(), wiseSaying.getSaying(), wiseSaying.getAuthor()));
         }
@@ -108,9 +147,6 @@ public class App {
 
         boolean removed = wiseSayings.removeIf((WiseSaying wiseSaying) -> wiseSaying.getId() == id);
 
-        //wiseSayings.removeIf((WiseSaying wiseSaying) -> wiseSaying.getId() == id);
-        //wiseSayings.removeIf(wiseSaying -> wiseSaying.getId() == id);
-        //wiseSayings.removeIf(w -> w.getId() == id);
 
         if(removed){
             System.out.println("%d번 명언을 삭제했습니다.".formatted(id));

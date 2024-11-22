@@ -25,6 +25,13 @@ public class WiseSaying /*extends Object*/ {
         return author;
     }
 
+    public String setSaying(String saying){
+        return this.saying = saying;
+    }
+
+    public String setAuthor(String author){
+        return this.author = author;
+    }
 
     //Object클래스로 부터 물려받은 toString 메서드 오버라이드해서 출력문 예쁘게 출력
     @Override
